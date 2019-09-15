@@ -1,0 +1,31 @@
+export default {
+    state: {
+        name: "",
+        sex: "",
+        age: "",
+        height: "",
+        weight: "",
+        raceAndnationality: "",
+        character: "",
+        looks: "",
+        virtue_id: "",
+        virtue_name: "",
+        gene: "",
+        delicate: "",
+        xp: "",
+        describe: ""
+    },
+    getters: {
+        collapse(state){// 对应着上面state
+            return collapse;
+        }
+    },
+    mutations: {
+        collapse(state){  // 改变收缩状态
+            state.collapse = !state.collapse;
+        }
+    },
+    actions: {
+
+    }
+}
