@@ -67,7 +67,10 @@ export default {
         additional: 0
       }
     ],
-
+    physiological_max: 6,
+    mind_max: 5,
+    interactive: 4,
+    free: 3
   },
 
   mutations: {

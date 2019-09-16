@@ -161,7 +161,7 @@ import dialogd from "./dialog";
 import datajs from "@/components/Fx/js/handle.js";
 import rulejs from "@/components/Fx/js/rule.js";
 export default {
-  name: "Fxtable3",
+  name: "Fxtable2",
   data() {
     return {
       Dialog: false,
@@ -185,14 +185,12 @@ export default {
       msg: "基础" + String(this.$store.state.fx3.physiological_max)
     };
   },
-  computed: {
-    max_test: function() {
-      console.log(this.$store.state.fx3.physiological_max);
-      console.log(this.$store.state.fx3.free_max);
-      return (
-        this.$store.state.fx3.physiological_max + this.$store.state.fx3.free_max
-      );
-    },
+  computed:{
+    max_test:function(){
+            console.log(this.$store.state.fx3.physiological_max)
+                  console.log(this.$store.state.fx3.free_max)
+      return this.$store.state.fx3.physiological_max+this.$store.state.fx3.free_max
+    }
   },
   watch: {
     tableData: {
@@ -219,26 +217,38 @@ export default {
         }
       }
     },
+
     //响应变化
     handleEdit(index, row) {
-      this.$nextTick(() => {
       row.total = row.base + row.inner;
-      // console.log("基本:  " + row.base);
-      // console.log("store里的: " + this.$store.state.fx3.tableData[index].base);
-      // console.log("生理可用: "+ this.$store.state.fx3.physiological_use);
-      if (this.$store.state.fx3.oldSkillsBase[index] < row.base) {
-// console.log("增加");
-        rulejs.inputNumberRule(index, true);//属性增加，上限减少
-      } else {
-// console.log("减少");
-        rulejs.inputNumberRule(index, false);//属性减少，上限增加
-      }
-      // console.log("生理可用: "+ this.$store.state.fx3.physiological_use);
-      //更新旧值
-      this.$store.state.fx3.oldSkillsBase[index] = this.$store.state.fx3.tableData[index].base;
-      //manage 进行衍生属性
       datajs.manage();
-      })
+      //fx3
+      if(index <=3){
+        //若是生理的点击事件
+        if(this.$store.state.fx3.physiological_max>0){
+          //生理点还有剩余
+          this.$store.state.fx3.physiological_max -= 1;
+        }else if(this.$store.state.fx3.free_max >0){
+          //自由分配点还有剩余
+          this.$store.state.fx3.free_max -= 1;
+        }
+      }else if(index>3 && index <=7){
+        //若是心智的点击事件
+        if(this.$store.state.fx3.mind_max_max>0){
+          this.$store.state.fx3.mind_max_max -= 1;
+        }else if(this.$store.state.fx3.free_max >0){
+          //自由分配点还有剩余
+          this.$store.state.fx3.free_max -= 1;
+        }
+      }else{
+        //若是互动的点击事件
+        if(this.$store.state.fx3.interactive_max>0){
+          this.$store.state.fx3.interactive_max -= 1;
+        }else if(this.$store.state.fx3.free_max >0){
+          //自由分配点还有剩余
+          this.$store.state.fx3.free_max -= 1;
+        }
+      }
     },
     //修改指定单元格样式
     cellStyle({ row, column, rowIndex, columnIndex }) {

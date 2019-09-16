@@ -187,10 +187,8 @@ export default {
   },
   computed: {
     max_test: function() {
-      console.log(this.$store.state.fx3.physiological_max);
-      console.log(this.$store.state.fx3.free_max);
       return (
-        this.$store.state.fx3.physiological_max + this.$store.state.fx3.free_max
+        6 + this.$store.state.fx3.free_max
       );
     },
   },
@@ -225,7 +223,7 @@ export default {
       row.total = row.base + row.inner;
       // console.log("基本:  " + row.base);
       // console.log("store里的: " + this.$store.state.fx3.tableData[index].base);
-      // console.log("生理可用: "+ this.$store.state.fx3.physiological_use);
+      // console.log("生理上限: "+ this.$store.state.fx3.physiological_max);
       if (this.$store.state.fx3.oldSkillsBase[index] < row.base) {
 // console.log("增加");
         rulejs.inputNumberRule(index, true);//属性增加，上限减少
@@ -233,7 +231,7 @@ export default {
 // console.log("减少");
         rulejs.inputNumberRule(index, false);//属性减少，上限增加
       }
-      // console.log("生理可用: "+ this.$store.state.fx3.physiological_use);
+      // console.log("生理上限: "+ this.$store.state.fx3.physiological_max);
       //更新旧值
       this.$store.state.fx3.oldSkillsBase[index] = this.$store.state.fx3.tableData[index].base;
       //manage 进行衍生属性

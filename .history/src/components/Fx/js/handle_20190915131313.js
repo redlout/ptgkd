@@ -18,6 +18,7 @@ export default {
       this.handleStrong();
   },
 
+
   handleSpeed() {
     //力量+敏捷+体积+敏捷附加×5
     store.state.fx4.speed =
@@ -68,8 +69,7 @@ export default {
         store.state.fx4.will =
           store.state.fx2.tableData[5].base +
           store.state.fx3.tableData[7].base +
-          Number(store.state.fx3.tableData[7].data[i].level);
-        store.state.fx3.will = Number(store.state.fx3.tableData[7].data[i].level);
+          store.state.fx3.tableData[7].data[i].level;
       } else {
         store.state.fx4.will =
           store.state.fx2.tableData[5].base + store.state.fx3.tableData[7].base;
@@ -87,8 +87,7 @@ export default {
         store.state.fx4.reflection =
           store.state.fx2.tableData[1].base +
           store.state.fx3.tableData[0].base +
-          Number(store.state.fx3.tableData[0].data[i].level);
-          store.state.fx3.reflection = Number(store.state.fx3.tableData[0].data[i].level);
+          store.state.fx3.tableData[0].data[i].level;
       } else {
         store.state.fx4.reflection =
           store.state.fx2.tableData[1].base + store.state.fx3.tableData[0].base;
@@ -106,8 +105,7 @@ export default {
         store.state.fx4.strong =
           store.state.fx2.tableData[2].base +
           store.state.fx3.tableData[3].base +
-          Number(store.state.fx3.tableData[3].data[i].level);
-        store.state.fx3.strong = Number(store.state.fx3.tableData[3].data[i].level);
+          store.state.fx3.tableData[3].data[i].level;
       } else {
         store.state.fx4.strong =
           store.state.fx2.tableData[2].base + store.state.fx3.tableData[3].base;
@@ -120,13 +118,14 @@ export default {
       store.state.fx4.investigation =
         store.state.fx2.tableData[4].base + store.state.fx3.tableData[8].base;
     }
+    console.log(store.state.fx3.tableData[8].data);
     for (var i = 0; i < store.state.fx3.tableData[8].data.length; i++) {
+      console.log(i, store.state.fx3.tableData[8].data[i].professional);
       if (store.state.fx3.tableData[8].data[i].professional == "侦查") {
         store.state.fx4.investigation =
           store.state.fx2.tableData[4].base +
           store.state.fx3.tableData[8].base +
           Number(store.state.fx3.tableData[8].data[i].level);
-        store.state.fx3.investigation = Number(store.state.fx3.tableData[8].data[i].level);
       } else {
         store.state.fx4.investigation =
           store.state.fx2.tableData[4].base + store.state.fx3.tableData[8].base;

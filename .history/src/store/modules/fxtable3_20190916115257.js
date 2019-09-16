@@ -101,17 +101,10 @@ export default {
       }
     ],
     oldSkillsBase: [0,0,0,0,0,0,0,0,0,0,0,0], //记录更新前的数据
-    //可用属性值和上限值不是同一个东西，应该进行区分
-
-    physiological_max: 6, //生理点数上限
-    mind_max: 5, //心智点数上限
-    interactive_max: 4, //互动点数上限
-    free_max: 3, //自由点数上限
-
-    physiological_use: 6, //生理可用点数
-    mind_use: 5, //心智可用点数
-    interactive_use: 4, //互动可用点数
-    free_use: 3, //自由使用点数
+    physiological_max: 6, //生理可用点数
+    mind_max_max: 5, //心智可用点数
+    interactive_max: 4, //互动可用点数
+    free_max: 3, //自由使用点数
 
     //专业点出来的，在这里放是为了方便衍生属性计算
     will: 0, //意志

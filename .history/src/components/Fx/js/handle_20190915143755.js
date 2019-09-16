@@ -120,6 +120,7 @@ export default {
       store.state.fx4.investigation =
         store.state.fx2.tableData[4].base + store.state.fx3.tableData[8].base;
     }
+    console.log(store.state.fx3.tableData[8].data);
     for (var i = 0; i < store.state.fx3.tableData[8].data.length; i++) {
       if (store.state.fx3.tableData[8].data[i].professional == "侦查") {
         store.state.fx4.investigation =

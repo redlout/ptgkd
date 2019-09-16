@@ -21,7 +21,6 @@
               <el-input-number
                 size="small"
                 :min="0"
-                :max="max_test"
                 controls-position="right"
                 v-model="scope.row.base"
                 v-bind:disabled="diasabledInput"
@@ -42,6 +41,8 @@
           </el-table-column>
           <el-table-column prop="sel" label="专业" align="center">
             <template slot-scope="scope">
+              <!-- <el-input style="width:50%" size="small" :disabled="true" v-model="tableData[scope.$index].sel"> -->
+              <!-- <el-input style="width:50%" size="small" :disabled="true"> -->
               <span style="width:50%">
                 <el-tag
                   v-for="item in tableData[scope.$index].data"
@@ -70,6 +71,11 @@
     <!-- 对话框 -->
     <span>{{$store.state.fx3.tableData[8].data}}</span>
     <el-dialog :visible.sync="Dialog" center>
+      <!-- <el-row>
+        <el-col :xs="12" :sm="12" :lg="8" v-for="(virtue) of virtue_good_List" :key="virtue.id">
+          
+        </el-col>
+      </el-row>-->
       <el-row>
         <el-col :span="24">
           <el-table
@@ -159,9 +165,8 @@ import mock from "@/mock/index.js";
 import _ from "lodash";
 import dialogd from "./dialog";
 import datajs from "@/components/Fx/js/handle.js";
-import rulejs from "@/components/Fx/js/rule.js";
 export default {
-  name: "Fxtable3",
+  name: "Fxtable2",
   data() {
     return {
       Dialog: false,
@@ -184,15 +189,6 @@ export default {
       ],
       msg: "基础" + String(this.$store.state.fx3.physiological_max)
     };
-  },
-  computed: {
-    max_test: function() {
-      console.log(this.$store.state.fx3.physiological_max);
-      console.log(this.$store.state.fx3.free_max);
-      return (
-        this.$store.state.fx3.physiological_max + this.$store.state.fx3.free_max
-      );
-    },
   },
   watch: {
     tableData: {
@@ -219,26 +215,30 @@ export default {
         }
       }
     },
+
     //响应变化
     handleEdit(index, row) {
-      this.$nextTick(() => {
       row.total = row.base + row.inner;
-      // console.log("基本:  " + row.base);
-      // console.log("store里的: " + this.$store.state.fx3.tableData[index].base);
-      // console.log("生理可用: "+ this.$store.state.fx3.physiological_use);
-      if (this.$store.state.fx3.oldSkillsBase[index] < row.base) {
-// console.log("增加");
-        rulejs.inputNumberRule(index, true);//属性增加，上限减少
-      } else {
-// console.log("减少");
-        rulejs.inputNumberRule(index, false);//属性减少，上限增加
-      }
-      // console.log("生理可用: "+ this.$store.state.fx3.physiological_use);
-      //更新旧值
-      this.$store.state.fx3.oldSkillsBase[index] = this.$store.state.fx3.tableData[index].base;
-      //manage 进行衍生属性
       datajs.manage();
-      })
+      if(index <=3){
+        if(this.$store.state.fx3.physiological_max>0){
+          this.$store.state.fx3.physiological_max -= row.base;
+        }else{
+          this.$store.state.fx3.free_max -= row.base;
+        }
+      }else if(index>3 && index <=7){
+        if(this.$store.state.fx3.mind_max_max>0){
+          this.$store.state.fx3.mind_max_max -= row.base;
+        }else{
+          this.$store.state.fx3.free_max -= row.base;
+        }
+      }else{
+        if(this.$store.state.fx3.interactive_max>0){
+          this.$store.state.fx3.interactive_max -= row.base;
+        }else{
+          this.$store.state.fx3.free_max -= row.base;
+        }
+      }
     },
     //修改指定单元格样式
     cellStyle({ row, column, rowIndex, columnIndex }) {

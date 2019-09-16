@@ -51,7 +51,7 @@
       </el-row>
       <el-row>
         <el-col :xs="12" :sm="12" :lg="24">
-          <el-form-item label="意志" prop="will">: 决心【{{determined}}】+专注【{{focus}}】+意志【{{will_fx3}}】 = {{will}}</el-form-item>
+          <el-form-item label="意志" prop="will">: 决心【{{determined}}】+专注【{{focus}}】+意志 = {{will}}</el-form-item>
         </el-col>
       </el-row>
       <el-row>
@@ -59,7 +59,7 @@
           <el-form-item
             label="反射"
             prop="reflection"
-          >: 敏捷【{{agile}}】+运动【{{exercise}}】+反射【{{reflection_fx3}}】 = {{reflection}}</el-form-item>
+          >: 敏捷【{{agile}}】+运动【{{exercise}}】+反射 = {{reflection}}</el-form-item>
         </el-col>
       </el-row>
 
@@ -68,7 +68,7 @@
           <el-form-item
             label="强韧"
             prop="strong"
-          >: 耐力【{{endurance}}】+生存【{{survival}}】+强韧【{{strong_fx3}}】 = {{strong}}</el-form-item>
+          >: 耐力【{{endurance}}】+生存【{{survival}}】+强韧 = {{strong}}</el-form-item>
         </el-col>
       </el-row>
 
@@ -77,7 +77,7 @@
           <el-form-item
             label="侦查"
             prop="investigation"
-          >: 感知【{{perception}}】+洞察【{{Insight}}】+侦察【{{investigation_fx3}}】 = {{investigation}}</el-form-item>
+          >: 感知【{{perception}}】+洞察【{{Insight}}】+侦察 = {{investigation}}</el-form-item>
         </el-col>
       </el-row>
 
